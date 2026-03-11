@@ -35,7 +35,7 @@ db.autores.insertOne({ nome: "Jorge Amado", nacionalidade: "Brasileiro", livrosP
 db.livros.insertOne({
     titulo: "A Hora da Estrela",
     anoPublicacao: 1977,
-    Disponivel: true,
+    disponivel: true,
     autor: {
         nome: "Clarice Lispector",
         nacionalidade: "Brasileira"
