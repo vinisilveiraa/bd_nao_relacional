@@ -47,6 +47,7 @@ db.produto.insertMany([
 
 db.pedido.aggregate([
     {
+        // project usar 1 para aparecer os campos interessados
         $project: {
             cliente_id: 1,
             data: 1,
