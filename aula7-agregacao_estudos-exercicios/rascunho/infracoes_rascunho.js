@@ -1,4 +1,4 @@
-db.infracoes_ctb.insertMany([
+db.infracoes_rascunho.insertMany([
   // LEVES - 3 Pontos - R$ 88,38
   { "artigo": "169", "descricao": "Dirigir sem atenção ou sem os cuidados indispensáveis à segurança.", "grau": "Leve", "pontos": 3, "valor": 88.38 },
   { "artigo": "177", "descricao": "Deixar de prestar socorro à vítima de acidente de trânsito quando solicitado pela autoridade e seus agentes.", "grau": "Leve", "pontos": 3, "valor": 88.38 },

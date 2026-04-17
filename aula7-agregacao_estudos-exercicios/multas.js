@@ -4,10 +4,35 @@ db.multas.insertOne({
     hora: "",
     local: "",
 
-    // nao muda com frequencia = embed melhor
-    agente: {},
-    veiculo: {},
-    infracao: {},
+    agente: {
+        matricula: "",
+        nome: ""
+    },
 
-    cidade: {},
-}); 
+    veiculo: {
+        placa: "",
+        cadastro: "",
+        cor: "",
+        modelo: "",
+        marca: ""
+    },
+
+    proprietario: {
+        nome: "",
+        cpf: "",
+        sexo: "",
+        cidade: "",
+        estado: ""
+    },
+
+    infracao: {
+        descricao: "",
+        valor: "",
+        pontos: ""
+    },
+
+    localizacao: {
+        cidade: "",
+        estado: ""
+    }
+});

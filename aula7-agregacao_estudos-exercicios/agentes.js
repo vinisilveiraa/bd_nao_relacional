@@ -22,6 +22,6 @@ db.pessoas_rascunho.aggregate([
             }
         }
     },
-    { $limit: 5 },
-    { $out: "pessoas" }
+    { $limit: 10 },
+    { $out: "agente" }
 ])

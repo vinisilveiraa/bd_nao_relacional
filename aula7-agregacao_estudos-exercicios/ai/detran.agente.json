@@ -1,0 +1,110 @@
+[{
+  "_id": {
+    "$oid": "69e28569faf90a0f362adeca"
+  },
+  "nome": "Roberto Kevin Cláudio Dias",
+  "sexo": "Masculino",
+  "matricula": 35,
+  "contratacao": {
+    "$date": "2023-10-07T15:51:49.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69e28569faf90a0f362adecb"
+  },
+  "nome": "Mariah Rebeca Barros",
+  "sexo": "Feminino",
+  "matricula": 79,
+  "contratacao": {
+    "$date": "2022-08-23T07:08:23.464Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69e28569faf90a0f362adecc"
+  },
+  "nome": "Manuela Bianca da Rocha",
+  "sexo": "Feminino",
+  "matricula": 84,
+  "contratacao": {
+    "$date": "2020-12-13T20:27:32.784Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69e28569faf90a0f362adecd"
+  },
+  "nome": "Henrique Nathan Danilo da Cruz",
+  "sexo": "Masculino",
+  "matricula": 26,
+  "contratacao": {
+    "$date": "2023-02-13T00:47:49.468Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69e28569faf90a0f362adece"
+  },
+  "nome": "Marcos Vinicius Nicolas Figueiredo",
+  "sexo": "Masculino",
+  "matricula": 37,
+  "contratacao": {
+    "$date": "2023-04-14T01:01:22.474Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69e28569faf90a0f362adecf"
+  },
+  "nome": "Henry Benedito Breno Sales",
+  "sexo": "Masculino",
+  "matricula": 6,
+  "contratacao": {
+    "$date": "2021-07-14T04:35:53.097Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69e28569faf90a0f362aded0"
+  },
+  "nome": "Leandro Leonardo Juan Fernandes",
+  "sexo": "Masculino",
+  "matricula": 58,
+  "contratacao": {
+    "$date": "2022-03-23T10:50:00.587Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69e28569faf90a0f362aded1"
+  },
+  "nome": "Marcelo Caio Erick das Neves",
+  "sexo": "Masculino",
+  "matricula": 99,
+  "contratacao": {
+    "$date": "2025-11-07T09:25:08.721Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69e28569faf90a0f362aded2"
+  },
+  "nome": "Isis Lúcia Ramos",
+  "sexo": "Feminino",
+  "matricula": 4,
+  "contratacao": {
+    "$date": "2022-06-13T17:40:49.579Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69e28569faf90a0f362aded3"
+  },
+  "nome": "Nelson Matheus da Cunha",
+  "sexo": "Masculino",
+  "matricula": 86,
+  "contratacao": {
+    "$date": "2021-05-16T03:22:22.774Z"
+  }
+}]

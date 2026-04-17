@@ -18,5 +18,5 @@ db.estados_cidades_rascunho.aggregate([
 
     // usa out para registrar ela
     { $out: "cidades_certo" }
-    
+
 ])

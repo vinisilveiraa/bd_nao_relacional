@@ -64,3 +64,32 @@ db.pedido.aggregate([
         }
     }
 ]);
+
+// exercicios
+db.pedido.aggregate({
+    $group:
+    {
+        _id: "$cliente_id",
+        total_compras: { $sum: "$valor_total_compra" }
+    }
+})
+
+
+db.pedido.aggregate({
+    $group:
+    {
+        _id: "id_produto",
+        media_vendas: { $avg: "$valor_total_compra" }
+    }
+})
+
+
+db.pedido.aggregate({
+    $group: {
+        _id: "$cliente_id",
+        total_produtos: { $sum: "$quantidade" }
+    },
+    $match: {
+        total_produtos: { $gt: 5 }
+    }
+})

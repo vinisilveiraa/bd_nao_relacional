@@ -1,4 +1,4 @@
-db.proprietario.aggregate([
+db.pessoas_rascunho.aggregate([
     {
         $project: {
             _id: 0,
@@ -6,11 +6,11 @@ db.proprietario.aggregate([
             cpf: 1,
             sexo: 1,
             endereco: {
-                endereco: 1,
-                numero: 1,
-                bairro: 1,
-                cidade: 1,
-                estado: 1
+                logradouro: "$logradouro",
+                numero: "$numero",
+                bairro: "$bairro",
+                cidade: "$cidade",
+                estado: "$estado"
             },
             cadastro: {
                 $floor: {
@@ -19,6 +19,6 @@ db.proprietario.aggregate([
             }
         }
     },
-    { $limit: 5 },
-    { $out: "pessoas" }
+    { $limit: 10 },
+    { $out: "proprietarios" }
 ])

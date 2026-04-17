@@ -1,0 +1,90 @@
+[{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362aded4"
+  },
+  "artigo": "169",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+},
+{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362aded5"
+  },
+  "artigo": "177",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+},
+{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362aded6"
+  },
+  "artigo": "181 I",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+},
+{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362aded7"
+  },
+  "artigo": "181 II",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+},
+{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362aded8"
+  },
+  "artigo": "183",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+},
+{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362aded9"
+  },
+  "artigo": "205",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+},
+{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362adeda"
+  },
+  "artigo": "224",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+},
+{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362adedb"
+  },
+  "artigo": "232",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+},
+{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362adedc"
+  },
+  "artigo": "236",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+},
+{
+  "_id": {
+    "$oid": "69e2858afaf90a0f362adedd"
+  },
+  "artigo": "241",
+  "grau": "Leve",
+  "pontos": 3,
+  "valor": 88.38
+}]

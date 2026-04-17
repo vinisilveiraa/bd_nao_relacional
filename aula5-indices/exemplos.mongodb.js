@@ -2,7 +2,7 @@
 
 // use banconovo;
 
-// registra 100000 usuarios
+// registra 100.000 usuarios
 for (let i = 0; i < 100000; i++) {
 
     db.usuarios.insertOne({
