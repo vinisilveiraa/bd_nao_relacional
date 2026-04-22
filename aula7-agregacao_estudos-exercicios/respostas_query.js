@@ -1,3 +1,6 @@
+
+// 1) 
+// Qual modelo de carro tem mais multas?
 db.multas.aggregate([
     {
         $group: {
@@ -12,6 +15,8 @@ db.multas.aggregate([
 ])
 
 
+// 2) 
+// Quantas multas por cidade?
 db.multas.aggregate([
     {
         $group: {
@@ -26,6 +31,8 @@ db.multas.aggregate([
 ])
 
 
+// 3) 
+// Qual é a infração mais aplicada?
 db.multas.aggregate([
     {
         $group: {
@@ -40,6 +47,8 @@ db.multas.aggregate([
 ])
 
 
+// 4) 
+// Qual mês do ano tem mais multas?
 db.multas.aggregate([
     {
         // cria um novo campo
@@ -62,6 +71,8 @@ db.multas.aggregate([
 ])
 
 
+// 5) 
+// Qual é a cor de veículo mais multada?
 db.multas.aggregate([
     {
         $group: {
@@ -76,6 +87,8 @@ db.multas.aggregate([
 ])
 
 
+// 6) 
+// Qual agente aplica mais multas?
 db.multas.aggregate([
     {
         $group: {
@@ -90,6 +103,8 @@ db.multas.aggregate([
 ])
 
 
+// 7) 
+// Qual sexo é mais multado?
 db.multas.aggregate([
     {
         $group: {
@@ -104,6 +119,8 @@ db.multas.aggregate([
 ])
 
 
+// 8) 
+// Qual marca de carro os homens preferem?
 db.multas.aggregate([
     {
         $match: {
@@ -123,6 +140,8 @@ db.multas.aggregate([
 ])
 
 
+// 9) 
+// Qual cor de carro as mulheres mais preferem?
 db.multas.aggregate([
     {
         $match: {
@@ -142,6 +161,8 @@ db.multas.aggregate([
 ])
 
 
+// 10) 
+// Faça um ranking dos veículos mais multados, decrescente.
 db.multas.aggregate([
     {
         $group: {

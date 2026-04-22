@@ -4,25 +4,20 @@ db.multas.insertOne({
     hora: "",
     local: "",
 
-    agente: {
-        matricula: "",
-        nome: ""
-    },
+    // veiculo_id: ObjectId(''),
+    // proprietario_id: Object(''),
 
     veiculo: {
         placa: "",
-        cadastro: "",
-        cor: "",
-        modelo: "",
-        marca: ""
     },
 
     proprietario: {
         nome: "",
-        cpf: "",
-        sexo: "",
-        cidade: "",
-        estado: ""
+    },
+
+    agente: {
+        matricula: "",
+        nome: ""
     },
 
     infracao: {
