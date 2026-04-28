@@ -42,6 +42,9 @@ Introdução aos bancos NoSQL, com foco em **MongoDB**, modelagem flexível, esc
 - `show collections`  
   Lista as coleções do banco atual.
 
+- `mongosh script.js`
+  Rodar um arquivo .js no MongoDB. Ou abrir o mongosh primeiro e usar load("script.js");.
+
 ---
 
 ### 🟡 Inserção de Dados
