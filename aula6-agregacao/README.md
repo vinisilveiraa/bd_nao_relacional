@@ -69,11 +69,11 @@ db.pedidos.aggregate([
 
 Usados dentro do `$group`:
 
-* `$sum` → soma
-* `$avg` → média
-* `$max` → maior valor
-* `$min` → menor valor
-* `$count` → quantidade
+- `$sum` → soma os valores especificados
+- `$avg` → média
+- `$max` → maior valor
+- `$min` → menor valor
+- `$count` → quantidade
 
 Exemplo:
 
@@ -177,6 +177,24 @@ db.pedidos.aggregate([
     $group: {
       _id: "$cliente_id",
       totalGasto: { $sum: "$valor" }
+    }
+  },
+  { $sort: { totalGasto: -1 } },
+  { $limit: 5 }
+])
+```
+
+```js
+db.pedidos.aggregate([
+  { $match: { status: "paid" } },
+  {
+    $group: {
+      _id: null // pega todas as colecoes
+      totalLucro: {
+        $sum: {
+          $multiply: ["$price", "$quantity"];
+        }
+      }
     }
   },
   { $sort: { totalGasto: -1 } },
