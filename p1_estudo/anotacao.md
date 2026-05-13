@@ -1,4 +1,4 @@
-## Estrutura do Aggregation
+# Estrutura do Aggregation
 
 ```js
 db.collection.aggregate([
@@ -23,6 +23,8 @@ sempre pensar no **pipeline (passo a passo)**
   }
 }
 ```
+
+- usar `_id: null` pega a coleção inteira, não agrupando por nada em específico
 
 ---
 
