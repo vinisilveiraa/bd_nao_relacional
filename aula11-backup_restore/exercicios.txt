@@ -1,0 +1,59 @@
+
+// 1
+mongodump --db Detran --out ./backup_detran
+
+
+// 2
+mongodump
+  --db Detran
+  --collection proprietarios
+  --out ./backup_proprietarios
+
+
+// 3
+mongorestore ./backup_detran
+
+
+// 4
+mongodump
+  --db Detran
+  --collection multas
+  --query '{"ano":2025}'
+  --out ./backup_multas2025
+
+
+// 5
+mongorestore
+  --db Detran
+  --collection multas
+  --drop
+  ./backup_multas2025/Detran/multas.bson
+
+
+// 6
+mongodump
+  --db Hospital
+  --archive=hospital.archive
+
+// 7
+mongorestore
+  --archive=hospital.archive
+
+
+// 8
+mongodump
+  --db Petshop
+  --archive=petshop.gz
+  --gzip
+
+// 9
+mongorestore
+  --db Petshop
+  --collection animal
+  ./backup_petshop/Petshop/animal.bson
+
+
+// 10 
+mongodump
+  --db Detran
+  --out ./backup/$(date +%F)

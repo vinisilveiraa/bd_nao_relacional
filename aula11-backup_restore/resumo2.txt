@@ -1,0 +1,293 @@
+====================================================
+MONGODB - BACKUP E RESTORE
+====================================================
+
+REGRA DE OURO
+
+mongodump
+MongoDB → BSON
+
+mongorestore
+BSON → MongoDB
+
+
+====================================================
+MONGODUMP
+====================================================
+
+BACKUP COMPLETO
+
+mongodump
+  --db Detran
+  --out ./backup_detran
+
+
+BACKUP DE UMA COLEÇÃO
+
+mongodump
+  --db Detran
+  --collection veiculos
+  --out ./backup_veiculos
+
+
+BACKUP COM FILTRO
+
+mongodump
+  --db Detran
+  --collection veiculos
+  --query '{"cor":"PRETA"}'
+  --out ./backup_veiculos_pretos
+
+
+BACKUP COMPACTADO
+
+mongodump
+  --db Detran
+  --archive=backup_detran.archive
+  --gzip
+
+
+BACKUP COM LOGIN
+
+mongodump
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --out ./backup_seguro
+
+
+====================================================
+PARÂMETROS MAIS IMPORTANTES
+====================================================
+
+--db
+Banco
+
+--collection
+Coleção
+
+--query
+Filtra documentos
+
+--out
+Diretório de saída
+
+--archive
+Gera arquivo único
+
+--gzip
+Compacta arquivo
+
+--uri
+Conexão completa
+
+--host
+Host
+
+--port
+Porta
+
+--username
+Usuário
+
+--password
+Senha
+
+--authenticationDatabase
+Banco de autenticação
+
+--oplog
+Backup consistente em Replica Set
+
+--numParallelCollections
+Coleções simultâneas
+
+--readPreference
+Escolhe nó de leitura
+
+--verbose
+Mais detalhes
+
+--quiet
+Menos detalhes
+
+--help
+Ajuda
+
+
+====================================================
+MONGORESTORE
+====================================================
+
+RESTAURAR TUDO
+
+mongorestore
+  ./backup_detran
+
+
+RESTAURAR UMA COLEÇÃO
+
+mongorestore
+  --db Detran
+  --collection veiculos
+  ./backup_veiculos/Detran/veiculos.bson
+
+
+RESTAURAR APAGANDO DADOS ANTIGOS
+
+mongorestore
+  --drop
+  ./backup_detran
+
+
+RESTAURAR ARQUIVO COMPACTADO
+
+mongorestore
+  --gzip
+  --archive=backup_detran.archive
+
+
+====================================================
+PARÂMETROS MAIS IMPORTANTES
+====================================================
+
+--db
+Banco destino
+
+--collection
+Coleção destino
+
+--dir
+Diretório do backup
+
+--archive
+Arquivo único
+
+--gzip
+Ler arquivo compactado
+
+--drop
+Apaga antes de restaurar
+
+--nsInclude
+Incluir apenas namespaces
+
+--nsExclude
+Excluir namespaces
+
+--maintainInsertionOrder
+Mantém ordem
+
+--preserveUUID
+Preserva UUID
+
+--stopOnError
+Para no primeiro erro
+
+--uri
+Conexão completa
+
+--host
+Host
+
+--port
+Porta
+
+--username
+Usuário
+
+--password
+Senha
+
+--authenticationDatabase
+Banco autenticação
+
+--batchSize
+Tamanho dos lotes
+
+--writeConcern
+Confirmação de escrita
+
+--verbose
+Mais detalhes
+
+--quiet
+Menos detalhes
+
+--help
+Ajuda
+
+
+====================================================
+EXERCÍCIOS MAIS COMUNS
+====================================================
+
+Backup completo
+→ mongodump --db BANCO --out PASTA
+
+Backup coleção
+→ mongodump --db BANCO --collection COLECAO --out PASTA
+
+Backup filtrado
+→ mongodump --query '{}' ...
+
+Backup compactado
+→ mongodump --archive=arquivo.archive --gzip
+
+Restore completo
+→ mongorestore PASTA
+
+Restore coleção
+→ mongorestore --db BANCO --collection COLECAO arquivo.bson
+
+Restore sobrescrevendo
+→ mongorestore --drop PASTA
+
+Restore compactado
+→ mongorestore --gzip --archive=arquivo.archive
+
+
+====================================================
+COMPARATIVO
+====================================================
+
+mongoexport
+→ JSON / CSV
+→ Legível
+
+mongodump
+→ BSON
+→ Backup real
+→ Mantém índices
+
+
+mongoimport
+→ JSON / CSV
+
+mongorestore
+→ BSON
+
+
+====================================================
+DECORAR PARA PROVA
+====================================================
+
+BACKUP
+
+--db
+--collection
+--query
+--out
+--archive
+--gzip
+
+RESTORE
+
+--db
+--collection
+--drop
+--archive
+--gzip
+
+COMANDOS
+
+mongodump
+mongorestore

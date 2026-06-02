@@ -1,0 +1,391 @@
+====================================================
+EXEMPLOS PRÁTICOS - MONGODUMP E MONGORESTORE
+====================================================
+
+
+1. FAZER BACKUP COMPLETO DO BANCO DETRAN
+
+mongodump
+  --db Detran
+  --out ./backup_detran
+
+
+----------------------------------------------------
+
+2. FAZER BACKUP COMPLETO DO BANCO PETSHOP
+
+mongodump
+  --db PetShop
+  --out ./backup_petshop
+
+
+----------------------------------------------------
+
+3. FAZER BACKUP APENAS DA COLEÇÃO VEICULOS
+
+mongodump
+  --db Detran
+  --collection veiculos
+  --out ./backup_veiculos
+
+
+----------------------------------------------------
+
+4. FAZER BACKUP APENAS DA COLEÇÃO PROPRIETARIOS
+
+mongodump
+  --db Detran
+  --collection proprietarios
+  --out ./backup_proprietarios
+
+
+----------------------------------------------------
+
+5. FAZER BACKUP APENAS DA COLEÇÃO CLIENTES
+
+mongodump
+  --db PetShop
+  --collection clientes
+  --out ./backup_clientes
+
+
+----------------------------------------------------
+
+6. FAZER BACKUP SOMENTE DOS VEÍCULOS PRETOS
+
+mongodump
+  --db Detran
+  --collection veiculos
+  --query '{"cor":"PRETA"}'
+  --out ./backup_veiculos_pretos
+
+
+----------------------------------------------------
+
+7. FAZER BACKUP SOMENTE DOS VEÍCULOS VERMELHOS
+
+mongodump
+  --db Detran
+  --collection veiculos
+  --query '{"cor":"VERMELHA"}'
+  --out ./backup_veiculos_vermelhos
+
+
+----------------------------------------------------
+
+8. FAZER BACKUP SOMENTE DAS MULTAS DE 2025
+
+mongodump
+  --db Detran
+  --collection multas
+  --query '{"ano":2025}'
+  --out ./backup_multas_2025
+
+
+----------------------------------------------------
+
+9. FAZER BACKUP DOS PRODUTOS COM ESTOQUE MENOR QUE 10
+
+mongodump
+  --db PetShop
+  --collection produtos
+  --query '{"estoque":{"$lt":10}}'
+  --out ./backup_estoque_baixo
+
+
+----------------------------------------------------
+
+10. GERAR BACKUP COMPACTADO
+
+mongodump
+  --db Detran
+  --archive=detran.archive
+  --gzip
+
+
+----------------------------------------------------
+
+11. GERAR BACKUP COMPACTADO DO PETSHOP
+
+mongodump
+  --db PetShop
+  --archive=petshop.archive
+  --gzip
+
+
+----------------------------------------------------
+
+12. GERAR BACKUP EM ARQUIVO ÚNICO
+
+mongodump
+  --db Hospital
+  --archive=hospital.archive
+
+
+----------------------------------------------------
+
+13. FAZER BACKUP COM LOGIN E SENHA
+
+mongodump
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --out ./backup_seguro
+
+
+----------------------------------------------------
+
+14. FAZER BACKUP DE UMA COLEÇÃO COM LOGIN
+
+mongodump
+  --uri="mongodb://admin:123@localhost:27017/PetShop"
+  --collection produtos
+  --out ./backup_produtos
+
+
+----------------------------------------------------
+
+15. FAZER BACKUP UTILIZANDO HOST E PORTA
+
+mongodump
+  --host localhost
+  --port 27017
+  --db Detran
+  --out ./backup_host
+
+
+----------------------------------------------------
+
+16. FAZER BACKUP COM USUÁRIO E SENHA SEPARADOS
+
+mongodump
+  --host localhost
+  --port 27017
+  --username admin
+  --password 123
+  --authenticationDatabase admin
+  --db Detran
+  --out ./backup_auth
+
+
+----------------------------------------------------
+
+17. FAZER BACKUP COMPLETO COM DATA NO NOME
+
+mongodump
+  --db Detran
+  --out ./backup/$(date +%F.
+
+
+----------------------------------------------------
+
+18. FAZER BACKUP DE TODOS OS BANCOS
+
+mongodump
+  --out ./backup_servidor
+
+
+----------------------------------------------------
+
+19. FAZER BACKUP DETALHADO PARA DEBUG
+
+mongodump
+  --db Detran
+  --out ./backup_detran
+  --verbose
+
+
+----------------------------------------------------
+
+20. FAZER BACKUP SILENCIOSO
+
+mongodump
+  --db Detran
+  --out ./backup_detran
+  --quiet
+
+
+====================================================
+RESTORE
+====================================================
+
+
+21. RESTAURAR UM BACKUP COMPLETO
+
+mongorestore
+  ./backup_detran
+
+
+----------------------------------------------------
+
+22. RESTAURAR O BANCO PETSHOP
+
+mongorestore
+  ./backup_petshop
+
+
+----------------------------------------------------
+
+23. RESTAURAR APENAS A COLEÇÃO VEICULOS
+
+mongorestore
+  --db Detran
+  --collection veiculos
+  ./backup_veiculos/Detran/veiculos.bson
+
+
+----------------------------------------------------
+
+24. RESTAURAR APENAS A COLEÇÃO PROPRIETARIOS
+
+mongorestore
+  --db Detran
+  --collection proprietarios
+  ./backup_proprietarios/Detran/proprietarios.bson
+
+
+----------------------------------------------------
+
+25. RESTAURAR APENAS A COLEÇÃO PRODUTOS
+
+mongorestore
+  --db PetShop
+  --collection produtos
+  ./backup_produtos/PetShop/produtos.bson
+
+
+----------------------------------------------------
+
+26. RESTAURAR APAGANDO DADOS ANTIGOS
+
+mongorestore
+  --drop
+  ./backup_detran
+
+
+----------------------------------------------------
+
+27. RESTAURAR APENAS O BANCO HOSPITAL
+
+mongorestore
+  --db Hospital
+  ./backup_hospital
+
+
+----------------------------------------------------
+
+28. RESTAURAR BACKUP COMPACTADO
+
+mongorestore
+  --gzip
+  --archive=detran.archive
+
+
+----------------------------------------------------
+
+29. RESTAURAR BACKUP COMPACTADO DO PETSHOP
+
+mongorestore
+  --gzip
+  --archive=petshop.archive
+
+
+----------------------------------------------------
+
+30. RESTAURAR BACKUP DE ARQUIVO ÚNICO
+
+mongorestore
+  --archive=hospital.archive
+
+
+----------------------------------------------------
+
+31. RESTAURAR COM LOGIN E SENHA
+
+mongorestore
+  --uri="mongodb://admin:123@localhost:27017"
+  ./backup_detran
+
+
+----------------------------------------------------
+
+32. RESTAURAR COM USUÁRIO E SENHA SEPARADOS
+
+mongorestore
+  --host localhost
+  --port 27017
+  --username admin
+  --password 123
+  --authenticationDatabase admin
+  ./backup_detran
+
+
+----------------------------------------------------
+
+33. RESTAURAR APENAS A COLEÇÃO ANIMAL
+
+mongorestore
+  --db PetShop
+  --collection animal
+  ./backup_petshop/PetShop/animal.bson
+
+
+----------------------------------------------------
+
+34. RESTAURAR APENAS O NAMESPACE DETRAN.MULTAS
+
+mongorestore
+  --nsInclude Detran.multas
+  ./backup_detran
+
+
+----------------------------------------------------
+
+35. RESTAURAR TUDO EXCETO A COLEÇÃO DE LOGS
+
+mongorestore
+  --nsExclude Detran.logs
+  ./backup_detran
+
+
+----------------------------------------------------
+
+36. RESTAURAR MANTENDO ORDEM DE INSERÇÃO
+
+mongorestore
+  --maintainInsertionOrder
+  ./backup_detran
+
+
+----------------------------------------------------
+
+37. RESTAURAR PARANDO NO PRIMEIRO ERRO
+
+mongorestore
+  --stopOnError
+  ./backup_detran
+
+
+----------------------------------------------------
+
+38. RESTAURAR PRESERVANDO UUID DAS COLEÇÕES
+
+mongorestore
+  --preserveUUID
+  ./backup_detran
+
+
+----------------------------------------------------
+
+39. RESTAURAR MOSTRANDO DETALHES
+
+mongorestore
+  --verbose
+  ./backup_detran
+
+
+----------------------------------------------------
+
+40. RESTAURAR DE FORMA SILENCIOSA
+
+mongorestore
+  --quiet
+  ./backup_detran

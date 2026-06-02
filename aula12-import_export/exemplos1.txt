@@ -1,0 +1,459 @@
+====================================================
+EXEMPLOS PRÁTICOS - MONGOIMPORT E MONGOEXPORT
+====================================================
+
+
+####################################################
+# MONGOIMPORT
+####################################################
+
+
+1. IMPORTAR UM ARQUIVO JSON PARA A COLEÇÃO PROPRIETARIOS
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+
+
+----------------------------------------------------
+
+2. IMPORTAR UM ARQUIVO JSON PARA A COLEÇÃO VEICULOS
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --file veiculos.json
+
+
+----------------------------------------------------
+
+3. IMPORTAR UM JSON EM FORMATO ARRAY
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --jsonArray
+
+
+----------------------------------------------------
+
+4. IMPORTAR CSV COM CABEÇALHO
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --type csv
+  --file veiculos.csv
+  --headerline
+
+
+----------------------------------------------------
+
+5. IMPORTAR CSV SEM CABEÇALHO
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --type csv
+  --file veiculos.csv
+  --fields placa,modelo,marca,cor
+
+
+----------------------------------------------------
+
+6. IMPORTAR CLIENTES PARA O PETSHOP
+
+mongoimport
+  --db PetShop
+  --collection clientes
+  --file clientes.json
+
+
+----------------------------------------------------
+
+7. IMPORTAR PRODUTOS PARA O PETSHOP
+
+mongoimport
+  --db PetShop
+  --collection produtos
+  --file produtos.json
+
+
+----------------------------------------------------
+
+8. IMPORTAR UTILIZANDO LOGIN E SENHA
+
+mongoimport
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --collection proprietarios
+  --file proprietarios.json
+
+
+----------------------------------------------------
+
+9. IMPORTAR APAGANDO DADOS ANTIGOS
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --drop
+
+
+----------------------------------------------------
+
+10. IMPORTAR VEÍCULOS APAGANDO A COLEÇÃO ANTIGA
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --file veiculos.json
+  --drop
+
+
+----------------------------------------------------
+
+11. IMPORTAR COM UPSERT PELO CPF
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --upsert
+  --upsertFields cpf
+
+
+----------------------------------------------------
+
+12. IMPORTAR COM UPSERT PELA PLACA
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --file veiculos.json
+  --upsert
+  --upsertFields placa
+
+
+----------------------------------------------------
+
+13. IMPORTAR UTILIZANDO MÚLTIPLAS THREADS
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --numInsertionWorkers 4
+
+
+----------------------------------------------------
+
+14. PARAR IMPORTAÇÃO NO PRIMEIRO ERRO
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --stopOnError
+
+
+----------------------------------------------------
+
+15. IMPORTAR CSV COM VÁRIOS PARÂMETROS
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --type csv
+  --file veiculos.csv
+  --headerline
+  --drop
+  --numInsertionWorkers 4
+
+
+----------------------------------------------------
+
+16. IMPORTAR COM HOST E PORTA
+
+mongoimport
+  --host localhost
+  --port 27017
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+
+
+----------------------------------------------------
+
+17. IMPORTAR COM USUÁRIO E SENHA SEPARADOS
+
+mongoimport
+  --host localhost
+  --port 27017
+  --username admin
+  --password 123
+  --authenticationDatabase admin
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+
+
+----------------------------------------------------
+
+18. IMPORTAR CIDADES E ESTADOS
+
+mongoimport
+  --db Detran
+  --collection cidades_estados
+  --file cidades_estados.json
+
+
+----------------------------------------------------
+
+19. IMPORTAR MULTAS
+
+mongoimport
+  --db Detran
+  --collection multas
+  --file multas.json
+
+
+----------------------------------------------------
+
+20. IMPORTAR AGENTES
+
+mongoimport
+  --db Detran
+  --collection agentes
+  --file agentes.json
+
+
+
+####################################################
+# MONGOEXPORT
+####################################################
+
+
+21. EXPORTAR A COLEÇÃO PROPRIETARIOS PARA JSON
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --out proprietarios.json
+
+
+----------------------------------------------------
+
+22. EXPORTAR A COLEÇÃO VEICULOS PARA JSON
+
+mongoexport
+  --db Detran
+  --collection veiculos
+  --out veiculos.json
+
+
+----------------------------------------------------
+
+23. EXPORTAR APENAS VEÍCULOS PRETOS
+
+mongoexport
+  --db Detran
+  --collection veiculos
+  --query '{"cor":"PRETA"}'
+  --out veiculos_pretos.json
+
+
+----------------------------------------------------
+
+24. EXPORTAR APENAS VEÍCULOS BRANCOS
+
+mongoexport
+  --db Detran
+  --collection veiculos
+  --query '{"cor":"BRANCA"}'
+  --out veiculos_brancos.json
+
+
+----------------------------------------------------
+
+25. EXPORTAR APENAS PROPRIETÁRIOS DO SEXO FEMININO
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --query '{"sexo":"F"}'
+  --out proprietarias.json
+
+
+----------------------------------------------------
+
+26. EXPORTAR PARA CSV
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --type csv
+  --fields nome,cpf,sexo
+  --out proprietarios.csv
+
+
+----------------------------------------------------
+
+27. EXPORTAR CAMPOS ESPECÍFICOS PARA CSV
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --type csv
+  --fields nome,cpf,endereco
+  --out proprietarios.csv
+
+
+----------------------------------------------------
+
+28. EXPORTAR MULTAS DE JAÚ
+
+mongoexport
+  --db Detran
+  --collection multas
+  --query '{"local":"Jaú"}'
+  --out multas_jau.json
+
+
+----------------------------------------------------
+
+29. EXPORTAR MULTAS DE BAURU
+
+mongoexport
+  --db Detran
+  --collection multas
+  --query '{"local":"Bauru"}'
+  --out multas_bauru.json
+
+
+----------------------------------------------------
+
+30. EXPORTAR COMO ARRAY JSON
+
+mongoexport
+  --db Detran
+  --collection agentes
+  --jsonArray
+  --out agentes.json
+
+
+----------------------------------------------------
+
+31. EXPORTAR JSON FORMATADO
+
+mongoexport
+  --db Detran
+  --collection agentes
+  --pretty
+  --out agentes.json
+
+
+----------------------------------------------------
+
+32. EXPORTAR UTILIZANDO LOGIN E SENHA
+
+mongoexport
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --collection proprietarios
+  --out proprietarios.json
+
+
+----------------------------------------------------
+
+33. EXPORTAR OS 5 VEÍCULOS MAIS NOVOS
+
+mongoexport
+  --db Detran
+  --collection veiculos
+  --sort '{"ano":-1}'
+  --limit 5
+  --out veiculos_novos.json
+
+
+----------------------------------------------------
+
+34. EXPORTAR AS 10 MULTAS MAIS CARAS
+
+mongoexport
+  --db Detran
+  --collection multas
+  --sort '{"valor":-1}'
+  --limit 10
+  --out top_multas.json
+
+
+----------------------------------------------------
+
+35. EXPORTAR IGNORANDO OS 20 PRIMEIROS REGISTROS
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --skip 20
+  --out proprietarios.json
+
+
+----------------------------------------------------
+
+36. EXPORTAR 10 REGISTROS APÓS PULAR 20
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --skip 20
+  --limit 10
+  --out proprietarios.json
+
+
+----------------------------------------------------
+
+37. EXPORTAR CLIENTES DO PETSHOP
+
+mongoexport
+  --db PetShop
+  --collection clientes
+  --out clientes.json
+
+
+----------------------------------------------------
+
+38. EXPORTAR PRODUTOS DO PETSHOP
+
+mongoexport
+  --db PetShop
+  --collection produtos
+  --out produtos.json
+
+
+----------------------------------------------------
+
+39. EXPORTAR UTILIZANDO HOST E PORTA
+
+mongoexport
+  --host localhost
+  --port 27017
+  --db Detran
+  --collection proprietarios
+  --out proprietarios.json
+
+
+----------------------------------------------------
+
+40. EXPORTAR COM USUÁRIO E SENHA SEPARADOS
+
+mongoexport
+  --host localhost
+  --port 27017
+  --username admin
+  --password 123
+  --authenticationDatabase admin
+  --db Detran
+  --collection proprietarios
+  --out proprietarios.json

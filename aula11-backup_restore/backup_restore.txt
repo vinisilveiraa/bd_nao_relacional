@@ -1,0 +1,130 @@
+==============================
+  MONGODB - BACKUP E RESTORE
+==============================
+
+Banco: Detran
+  coleções:
+  - proprietarios
+  - veiculos
+  - cidades_estados
+
+comandos no terminal obviamente
+
+
+
+1- BACKUP COMPLETO DO BANCO
+
+mongodump --db Detran --out ./backup_detran
+
+Resultado:
+
+./backup_detran/
+   - Detran/
+      - proprietarios.bson
+      - veiculos.bson
+      - cidades_estados.bson
+
+
+2- BACKUP APENAS DA COLEÇÃO VEICULOS
+
+mongodump
+  --db Detran
+  --collection veiculos
+  --out ./backup_veiculos
+
+
+3- BACKUP FILTRANDO DOCUMENTOS
+Exemplo:
+salvar apenas veículos da cor preta
+
+mongodump
+  --db Detran
+  --collection veiculos
+  --query '{"cor":"PRETA"}'
+  --out ./backup_veiculos_pretos
+
+
+4- BACKUP COMPACTADO
+
+mongodump
+  --db Detran
+  --archive=backup_detran.archive
+  --gzip
+
+
+Cria:
+backup_detran.archive
+
+
+ 5- BACKUP COM LOGIN E SENHA
+
+mongodump
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --out ./backup_seguro
+
+
+6- RESTORE COMPLETO DO BANCO
+
+mongorestore ./backup_detran
+
+
+7- RESTORE APENAS DA COLEÇÃO VEICULOS
+
+mongorestore
+  --db Detran
+  --collection veiculos
+  ./backup_veiculos/Detran/veiculos.bson
+
+
+
+8- RESTORE SOBRESCREVENDO DADOS
+--drop remove os dados antigos antes.
+
+  --drop
+  ./backup_detran
+
+
+
+9- RESTORE DE ARQUIVO COMPACTADO
+
+mongorestore
+  --gzip
+  --archive=backup_detran.archive
+
+
+
+ * 10- BACKUP AUTOMÁTICO COM DATA
+ * Linux / Git Bash
+
+mongodump
+  --db Detran
+  --out ./backup/$(date +%F)
+
+
+
+Exemplo gerado:
+
+./backup/2026-05-27
+
+
+
+
+11- EXEMPLO COMPLETO REAL
+
+mongodump
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --collection proprietarios
+  --query '{"sexo":"M"}'
+  --archive=homens.archive
+  --gzip
+
+
+ * BACKUP FINAL
+
+mongodump --db Detran --out ./backup_final
+
+
+
+RESTORE FINAL
+
+mongorestore --drop ./backup_final

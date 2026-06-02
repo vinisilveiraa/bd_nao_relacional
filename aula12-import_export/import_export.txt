@@ -1,0 +1,259 @@
+==============================
+  MONGODB - IMPORT E EXPORT
+==============================
+
+Banco: Detran
+  coleções:
+  - proprietarios
+  - veiculos
+  - cidades_estados
+
+comandos no terminal obviamente
+
+
+
+1- IMPORTAR JSON
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+
+
+Resultado:
+Importa os dados do arquivo JSON para a coleção.
+
+
+
+2- IMPORTAR JSON ARRAY
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --jsonArray
+
+
+Usado quando o JSON está assim:
+
+[
+  { ... },
+  { ... }
+]
+
+
+
+3- IMPORTAR CSV COM CABEÇALHO
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --type csv
+  --file veiculos.csv
+  --headerline
+
+
+O --headerline usa a primeira linha do CSV
+como nome dos campos.
+
+
+
+4- IMPORTAR CSV SEM CABEÇALHO
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --type csv
+  --file veiculos.csv
+  --fields placa,modelo,marca,cor
+
+
+
+5- IMPORTAR COM LOGIN E SENHA
+
+mongoimport
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --collection proprietarios
+  --file proprietarios.json
+
+
+
+6- IMPORTAÇÃO SOBRESCREVENDO DADOS
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --drop
+
+OBS:
+o --drop apaga os dados antigos antes.
+
+
+
+7- IMPORTAÇÃO COM UPSERT
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --upsert
+  --upsertFields cpf
+
+
+Atualiza pelo CPF se já existir.
+
+
+
+8- IMPORTAÇÃO COM VÁRIOS PARÂMETROS
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.csv
+  --type csv
+  --headerline
+  --drop
+  --numInsertionWorkers 4
+  --stopOnError
+
+
+
+==============================
+        MONGOEXPORT
+==============================
+
+
+
+9- EXPORTAR COLEÇÃO PARA JSON
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --out proprietarios.json
+
+
+
+Resultado:
+proprietarios.json
+
+
+
+10- EXPORTAR COM FILTRO
+
+Exemplo:
+exportar apenas veículos pretos
+
+mongoexport
+  --db Detran
+  --collection veiculos
+  --query '{"cor":"PRETA"}'
+  --out veiculos_pretos.json
+
+
+
+11- EXPORTAR PARA CSV
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --type=csv
+  --fields nome,cpf,sexo
+  --out proprietarios.csv
+
+
+
+12- EXPORTAR COM LOGIN E SENHA
+
+mongoexport
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --collection proprietarios
+  --out proprietarios.json
+
+
+
+13- EXPORTAR ORDENANDO DADOS
+
+Exemplo:
+5 multas mais caras
+
+mongoexport
+  --db Detran
+  --collection multas
+  --sort '{"valor": -1}'
+  --limit 5
+  --out top5_multas.json
+
+
+
+14- EXPORTAR COMO ARRAY JSON
+
+mongoexport
+  --db Detran
+  --collection agentes
+  --jsonArray
+  --out agentes.json
+
+
+
+15- EXPORTAR CAMPOS ESPECÍFICOS
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --type=csv
+  --fields nome,cpf,endereco
+  --out proprietarios.csv
+
+
+
+16- EXPORTAR COM FILTRO DE CIDADE
+
+mongoexport
+  --db Detran
+  --collection multas
+  --query '{"local":"Jaú"}'
+  --out multas_jau.json
+
+
+
+17- EXPORTAÇÃO REMOTA
+
+mongoexport
+  --uri="mongodb://admin:1234@mongo.detran.sp.gov.br:27017/detran"
+  --collection agentes
+  --out agentes_remoto.json
+
+
+
+==============================
+  COMPARATIVO IMPORT/RESTORE
+==============================
+
+mongoimport:
+- usa JSON/CSV
+- legível
+- ideal para integração
+- importa uma coleção
+
+mongorestore:
+- usa BSON
+- backup completo
+- mantem indices/estrutura
+- mais rápido
+
+
+
+==============================
+ COMPARATIVO EXPORT/DUMP
+==============================
+
+mongoexport:
+- gera JSON/CSV
+- legível
+- integração com Excel/pandas/etc
+
+mongodump:
+- gera BSON
+- backup real do MongoDB
+- mais seguro e completo

@@ -1,0 +1,78 @@
+
+1- Exportar proprietarios para JSON
+
+mongoexport
+  --db detran
+  --collection proprietario
+  --out proprietarios.json
+
+
+
+2- Exportar nome, cpf e endereco para CSV
+
+mongoexport
+  --db detran
+  --collection proprietario
+  --type=csv
+  --fields nome,cpf,endereco
+  --out proprietarios.csv
+
+
+
+3- Importar proprietarios.json no hospital
+
+mongoimport
+  --db hospital
+  --collection paciente
+  --file proprietarios.json
+
+
+
+4- Importar CSV no petshop
+
+mongoimport
+  --db petshop
+  --collection cliente
+  --type csv
+  --file proprietarios.csv
+  --headerline
+
+
+
+5- Exportar multas de Jaú
+
+mongoexport
+  --db detran
+  --collection multa
+  --query '{"local":"Jaú"}'
+  --out multas_jau.json
+
+
+
+6- Exportar 5 infrações mais caras
+
+mongoexport
+  --db detran
+  --collection infracao
+  --sort '{"valor": -1}'
+  --limit 5
+  --out top5_infracoes.json
+
+
+
+7- Exportar agente como JSON array
+
+mongoexport
+  --db detran
+  --collection agente
+  --jsonArray
+  --out agentes.json
+
+
+
+8- Exportação remota com login
+
+mongoexport
+  --uri="mongodb://admin:1234@mongo.detran.sp.gov.br:27017/detran"
+  --collection agente
+  --out agentes_remoto.json

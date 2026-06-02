@@ -1,0 +1,347 @@
+IMPORT
+--jsonArray
+--headerline
+--fields
+--drop
+--upsert
+
+EXPORT
+--query
+--fields
+--sort
+--limit
+--jsonArray
+
+BACKUP
+mongodump
+mongorestore
+
+====================================================
+MONGODB - IMPORTAÇÃO E EXPORTAÇÃO
+====================================================
+
+REGRA DE OURO
+
+mongoimport
+→ JSON/CSV → MongoDB
+
+mongoexport
+→ MongoDB → JSON/CSV
+
+mongodump
+→ MongoDB → BSON (backup)
+
+mongorestore
+→ BSON → MongoDB
+
+
+====================================================
+MONGOIMPORT
+====================================================
+
+IMPORTAR JSON
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+
+
+----------------------------------------------------
+PARÂMETROS MAIS IMPORTANTES
+----------------------------------------------------
+
+--db
+Banco de destino
+
+--collection
+Coleção de destino
+
+--file
+Arquivo a ser importado
+
+--jsonArray
+Usado quando o JSON está em array
+
+[
+  {...},
+  {...}
+]
+
+--type csv
+Informa que o arquivo é CSV
+
+--headerline
+Primeira linha do CSV contém os nomes dos campos
+
+--fields
+Define manualmente os campos do CSV
+
+--drop
+Apaga a coleção antes de importar
+
+--upsert
+Atualiza documentos existentes
+
+--upsertFields
+Campo usado para localizar documentos
+
+--uri
+Conexão completa
+
+--numInsertionWorkers
+Número de threads de inserção
+
+--stopOnError
+Para ao encontrar erro
+
+
+----------------------------------------------------
+EXEMPLOS
+----------------------------------------------------
+
+JSON ARRAY
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --jsonArray
+
+
+CSV COM CABEÇALHO
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --type csv
+  --file veiculos.csv
+  --headerline
+
+
+CSV SEM CABEÇALHO
+
+mongoimport
+  --db Detran
+  --collection veiculos
+  --type csv
+  --file veiculos.csv
+  --fields placa,modelo,marca,cor
+
+
+IMPORTAR COM LOGIN
+
+mongoimport
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --collection proprietarios
+  --file proprietarios.json
+
+
+IMPORTAR APAGANDO DADOS ANTIGOS
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --drop
+
+
+UPSERT
+
+mongoimport
+  --db Detran
+  --collection proprietarios
+  --file proprietarios.json
+  --upsert
+  --upsertFields cpf
+
+
+====================================================
+MONGOEXPORT
+====================================================
+
+EXPORTAR JSON
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --out proprietarios.json
+
+
+----------------------------------------------------
+PARÂMETROS MAIS IMPORTANTES
+----------------------------------------------------
+
+--db
+Banco
+
+--collection
+Coleção
+
+--out
+Arquivo de saída
+
+--type
+json ou csv
+
+--jsonArray
+Exporta como array JSON
+
+--pretty
+JSON formatado
+
+--query
+Filtra documentos
+
+--fields
+Campos específicos
+
+--fieldFile
+Campos definidos em arquivo
+
+--sort
+Ordena resultados
+
+--skip
+Ignora N documentos
+
+--limit
+Limita quantidade
+
+--uri
+Conexão completa
+
+--host
+Servidor
+
+--port
+Porta
+
+--username
+Usuário
+
+--password
+Senha
+
+--authenticationDatabase
+Banco de autenticação
+
+
+----------------------------------------------------
+EXEMPLOS
+----------------------------------------------------
+
+EXPORTAR JSON
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --out proprietarios.json
+
+
+EXPORTAR COM FILTRO
+
+mongoexport
+  --db Detran
+  --collection veiculos
+  --query '{"cor":"PRETA"}'
+  --out veiculos_pretos.json
+
+
+EXPORTAR CSV
+
+mongoexport
+  --db Detran
+  --collection proprietarios
+  --type csv
+  --fields nome,cpf,sexo
+  --out proprietarios.csv
+
+
+EXPORTAR ARRAY JSON
+
+mongoexport
+  --db Detran
+  --collection agentes
+  --jsonArray
+  --out agentes.json
+
+
+EXPORTAR ORDENANDO
+
+mongoexport
+  --db Detran
+  --collection multas
+  --sort '{"valor":-1}'
+  --limit 5
+  --out top5_multas.json
+
+
+EXPORTAR COM LOGIN
+
+mongoexport
+  --uri="mongodb://admin:123@localhost:27017/Detran"
+  --collection proprietarios
+  --out proprietarios.json
+
+
+====================================================
+COMPARATIVOS
+====================================================
+
+mongoimport
+✔ JSON/CSV
+✔ Legível
+✔ Integração
+✔ Uma coleção
+
+mongorestore
+✔ BSON
+✔ Backup completo
+✔ Mantém índices
+✔ Mais rápido
+
+
+----------------------------------------------------
+
+mongoexport
+✔ JSON/CSV
+✔ Legível
+✔ Excel
+✔ Pandas
+✔ Integração
+
+mongodump
+✔ BSON
+✔ Backup real
+✔ Mantém estrutura
+✔ Mais seguro
+
+
+====================================================
+DECORAR PARA PROVA
+====================================================
+
+IMPORTAÇÃO
+
+--jsonArray
+--headerline
+--fields
+--drop
+--upsert
+--upsertFields
+
+EXPORTAÇÃO
+
+--query
+--fields
+--sort
+--limit
+--skip
+--jsonArray
+--pretty
+
+BACKUP
+
+mongodump
+mongorestore
