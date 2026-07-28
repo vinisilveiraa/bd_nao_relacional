@@ -1,13 +1,10 @@
 
 // 1
-mongodump --db Detran --out ./backup_detran
+mongodump --db detran --out ./backup_detran
 
 
 // 2
-mongodump
-  --db Detran
-  --collection proprietarios
-  --out ./backup_proprietarios
+mongodump --db detran --collection proprietarios --out ./backup_proprietarios
 
 
 // 3
